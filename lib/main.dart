@@ -1,9 +1,14 @@
+import 'package:emart_seller/const/const.dart';
+import 'package:emart_seller/firebase_options.dart';
+import 'package:emart_seller/views/auth_screen/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -12,11 +17,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: appname,
+      home: const LoginScreen(),
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          appBarTheme: const AppBarTheme(
+              backgroundColor: Colors.transparent, elevation: 0.0)),
     );
   }
 }
